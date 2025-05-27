@@ -1,4 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Polynomial
@@ -28,7 +31,7 @@ public class Polynomial
 		}
 	}
 	
-	public Polynomial(File file){
+	public Polynomial(File file) throws FileNotFoundException{
 		
 		Scanner input = new Scanner(file);
 		String line = "";
@@ -269,19 +272,24 @@ public class Polynomial
 		return false;
 	}
 	
-	public void saveToFile(String file){
+	public void saveToFile(String file)throws IOException{
 		
 		java.io.FileWriter kkk = new java.io.FileWriter(file);
+		int a=0;
 		for(int i=0;i<this.num.length;i++)
 		{
 			double coe = this.num[i];
 			int exp = this.exponents[i];
-			
-			if(coe>=0)
+			if(coe==0)
+			{
+				continue;
+			}
+			if(coe>0 && a!=0)
 			{
 				kkk.write("+");
 			}
 			kkk.write(Double.toString(coe));
+			a++;
 			if(exp==0) {
 				continue;
 			}

@@ -3,17 +3,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Driver {
-	public static void main(String [] args) {
+	public static void main(String [] args) throws FileNotFoundException, IOException{
 		Polynomial p0 = new Polynomial();
 		System.out.println("p0(3) = " + p0.evaluate(3));
 
-		// test the single‐array constructor
 		double[]c1={6,0,0,5};
-		int[]e1={3,3,3,0}
+		int[]e1={3,3,3,0};
 		Polynomial p1 = new Polynomial(c1,e1);
 		System.out.println("p1(1) = " + p1.evaluate(1));
 
-		// test the file‐based constructor (make sure poly.txt exists in this folder)
 		Polynomial p2 = new Polynomial(new File("poly.txt"));
 		System.out.println("p2(2) = " + p2.evaluate(2));
 
@@ -33,4 +31,5 @@ public class Driver {
 		sum.saveToFile("sum.txt");
 		prod.saveToFile("prod.txt");
 		System.out.println("Wrote sum.txt and prod.txt");
+	}
 }
